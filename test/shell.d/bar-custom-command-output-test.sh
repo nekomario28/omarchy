@@ -32,6 +32,13 @@ assertEqual(bar.customCommandLabel('123', 123), '123',
 assertEqual(bar.customCommandLabel('{"text":null}', { text: null }), '{"text":null}',
   'a null text still shows the raw output')
 
+assertEqual(bar.customCommandLabel('{"text":0}', { text: 0 }), '0',
+  'numeric zero text is stringified instead of treated as absent')
+assertEqual(bar.customCommandLabel('{"text":false}', { text: false }), 'false',
+  'false text is stringified instead of treated as absent')
+assertEqual(bar.customCommandLabel('{"plain":true,"text":"user"}', { plain: true, text: 'user' }), 'user',
+  'a user-provided plain field cannot override parsed JSON text')
+
 assert(
   /outputText = BarModel\.customCommandLabel\(raw, data\)/.test(barSource),
   'the bar uses the shared label, so the rule cannot drift back into the QML'
