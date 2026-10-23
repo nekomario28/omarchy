@@ -380,7 +380,7 @@ stage_installed_theme() {
         *) IGNORED_THEME_FILES+=("$name") ;;
       esac
     elif [[ -d $entry ]]; then
-      stage_installed_dir "$entry" "$NEXT_THEME_PATH/$name"
+      stage_installed_dir "$entry" "$NEXT_THEME_PATH/$name" "$name/"
     else
       cp "$entry" "$NEXT_THEME_PATH/$name"
     fi

@@ -118,6 +118,7 @@ done
 
 assert_not_staged HYPRLAND.LUA "Lua in another case is not staged"
 assert_not_staged nested/hyprland.lua "Lua below the top level is not staged"
+grep -q 'nested/hyprland.lua' "$test_tmp/stderr" || fail "Lua below the top level is reported as nested/hyprland.lua"
 
 # Colour is kept, including a file Omarchy would otherwise have generated.
 assert_staged shell.toml "shell.toml is staged"
