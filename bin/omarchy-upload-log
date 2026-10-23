@@ -5,8 +5,9 @@
 # omarchy:hidden=true
 
 LOG_TYPE="${1:-install}"
-TEMP_LOG="/tmp/upload-log.txt"
-SYSTEM_INFO="/tmp/system-info.txt"
+# Unset TMPDIR keeps these at /tmp; a caller can relocate both by setting it.
+TEMP_LOG="${TMPDIR:-/tmp}/upload-log.txt"
+SYSTEM_INFO="${TMPDIR:-/tmp}/system-info.txt"
 
 # Get system information if fastfetch is available
 # command -v, not omarchy-cmd-present: omarchy-settings ships this script, and on the live ISO the
